@@ -2,8 +2,6 @@ package pitryxa.mcl_4.mouse;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -20,10 +18,5 @@ public class MouseImitation {
             mouse.move();
             mouse.click();
         }
-    }
-
-    @EventListener
-    public void onApplicationEvent(ContextRefreshedEvent event) {
-        start();
     }
 }
