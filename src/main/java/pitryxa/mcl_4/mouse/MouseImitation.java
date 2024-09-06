@@ -1,8 +1,9 @@
 package pitryxa.mcl_4.mouse;
 
-import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -13,12 +14,16 @@ public class MouseImitation {
     @Value("${iteration.count}")
     private int iterationCount;
 
-    @PostConstruct
     public void start() {
         for (int i = 0; i < iterationCount; i++) {
             mouse.scroll();
             mouse.move();
             mouse.click();
         }
+    }
+
+    @EventListener
+    public void onApplicationEvent(ContextRefreshedEvent event) {
+        start();
     }
 }
